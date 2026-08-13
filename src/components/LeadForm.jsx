@@ -38,7 +38,7 @@ export function LeadForm({ stages, onSubmit }) {
         <label className="field field-wide"><span>Этап сделки</span><select name="stage" value={values.stage} onChange={setValue}>{stages.map((stage) => <option key={stage}>{stage}</option>)}</select></label>
         <label className="spec-toggle"><span><strong>Запрошено ТЗ</strong><small>Отметим это в карточке лида</small></span><span className="switch"><input name="specRequested" checked={values.specRequested} onChange={setValue} type="checkbox" aria-label="Запрошено ТЗ" /><i aria-hidden="true" /></span></label>
       </div>
-      <button className="primary-button" type="submit"><span>Сохранить лида</span><span aria-hidden="true">↗</span></button>
+      <button className="primary-button" type="submit"><span>Сохранить</span><span aria-hidden="true">↗</span></button>
     </form>
   </section>;
 }
