@@ -4,98 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#161938" />
+    <meta name="description" content="Flowly — мини-CRM для работы с лидами" />
     <title>Flowly — лиды</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#top" aria-label="Flowly CRM, главная">
-          <span class="brand-mark">F</span><span>flowly</span>
-        </a>
-        <div class="topbar-meta"><span class="status-dot"></span> Все изменения сохранены</div>
-        <time id="today" class="today"></time>
-      </header>
-
-      <section id="top" class="hero" aria-labelledby="page-title">
-        <div>
-          <p class="kicker">Workspace / Продажи</p>
-          <h1 id="page-title">Лиды,<br /><em>которые не теряются.</em></h1>
-          <p class="hero-copy">Добавляйте обращения за секунды, ведите их по воронке и возвращайтесь к работе ровно с того же места.</p>
-        </div>
-        <div class="hero-stat" aria-label="Количество лидов в работе">
-          <span class="hero-stat-value" id="hero-total">0</span>
-          <span>лидов в работе</span>
-          <div class="mini-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        </div>
-      </section>
-
-      <section class="pipeline" aria-labelledby="pipeline-title">
-        <div class="section-label"><span class="section-number">01</span><h2 id="pipeline-title">Воронка на сегодня</h2></div>
-        <div id="stage-summary" class="stage-summary"></div>
-      </section>
-
-      <section class="workspace-grid">
-        <section class="lead-form-card" aria-labelledby="form-title">
-          <div class="section-label"><span class="section-number">02</span><h2 id="form-title">Новый лид</h2></div>
-          <p class="section-description">Поля со звёздочкой обязательны для заполнения.</p>
-          <form id="lead-form" novalidate>
-            <div class="form-grid">
-              <label class="field field-wide">
-                <span>Имя клиента <b>*</b></span>
-                <input id="client-name" name="clientName" type="text" placeholder="Например, Анна Петрова" autocomplete="name" maxlength="80" />
-                <small class="field-error" data-error-for="clientName"></small>
-              </label>
-              <label class="field field-wide">
-                <span>Номер телефона <b>*</b></span>
-                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (999) 123-45-67" autocomplete="tel" maxlength="30" />
-                <small class="field-error" data-error-for="phone"></small>
-              </label>
-              <label class="field">
-                <span>Источник</span>
-                <select id="source" name="source"><option value="Холодный">Холодный</option><option value="Тёплый">Тёплый</option></select>
-              </label>
-              <label class="field">
-                <span>Ответственный</span>
-                <select id="owner" name="owner"><option value="Лидоруб">Лидоруб</option><option value="МОП">МОП</option></select>
-              </label>
-              <label class="field field-wide">
-                <span>Этап сделки</span>
-                <select id="stage" name="stage"><option value="Новый лид">Новый лид</option><option value="Квалифицирован">Квалифицирован</option><option value="Назначена консультация">Назначена консультация</option><option value="Отказ">Отказ</option></select>
-              </label>
-              <label class="spec-toggle">
-                <span><strong>Запрошено ТЗ</strong><small>Отметим это в карточке лида</small></span>
-                <span class="switch"><input id="spec-requested" name="specRequested" type="checkbox" aria-label="Запрошено ТЗ" /><i aria-hidden="true"></i></span>
-              </label>
-            </div>
-            <p id="form-error" class="form-message" role="alert" aria-live="polite"></p>
-            <button class="primary-button" type="submit"><span>Сохранить лида</span><span aria-hidden="true">↗</span></button>
-          </form>
-        </section>
-
-        <aside class="tip-card">
-          <p class="kicker">Быстрый старт</p>
-          <h2>Ни одна заявка не потеряется.</h2>
-          <ol><li><span>01</span>Добавьте контакт</li><li><span>02</span>Выберите ответственного</li><li><span>03</span>Ведите по этапам</li></ol>
-          <div class="tip-card-footer"><span class="lock-icon">⌁</span> Данные сохранены в этом браузере</div>
-        </aside>
-      </section>
-
-      <section class="leads-section" aria-labelledby="leads-title">
-        <div class="leads-header">
-          <div class="section-label"><span class="section-number">03</span><h2 id="leads-title">База лидов <span id="leads-count">0</span></h2></div>
-          <div class="toolbar">
-            <label class="search"><span aria-hidden="true">⌕</span><input id="lead-search" type="search" placeholder="Поиск по имени или номеру" aria-label="Поиск по лидам" /></label>
-            <label class="filter"><span class="sr-only">Фильтр по этапу</span><select id="stage-filter"><option value="all">Все этапы</option><option value="Новый лид">Новый лид</option><option value="Квалифицирован">Квалифицирован</option><option value="Назначена консультация">Консультация</option><option value="Отказ">Отказ</option></select></label>
-          </div>
-        </div>
-        <div id="leads-list" class="leads-list" aria-live="polite"></div>
-      </section>
-    </main>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
